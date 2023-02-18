@@ -1,26 +1,31 @@
 pipeline {
   agent any
+
   stages {
-    stage('Build'){
+    stage('Build') {
       steps {
-        sh 'g++ working.cpp'
-        build job: "PES2UG20CS482-1", wait: true
+        sh 'g++ working.cpp -o working'
       }
     }
-    stage('Test'){
-      steps{
-        sh './a.out'
+   
+    stage('Test') {
+      steps {
+        sh './working'
       }
     }
-    stage('Deploy'){
-      steps{
-        echo 'Deploy'
+   
+    stage('Deploy') {
+      steps {
+        sh ' '
       }
     }
   }
+ 
   post {
     failure {
-      echo 'pipeline failed'
+       
+          echo 'Pipeline failed'
+        }
     }
+   
   }
-}
